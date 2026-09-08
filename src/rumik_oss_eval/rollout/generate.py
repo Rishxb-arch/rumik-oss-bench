@@ -3,7 +3,7 @@
 Why not reuse what ships: both the bundle's `generate_audio` and the training
 repo's `_generate_flat` decide when to stop with `.all()` across the batch. One
 long sequence therefore holds the entire batch open, and every row receives EOS
-at the same position — so batched output is not the same as batch-1 output. That
+at the same position - so batched output is not the same as batch-1 output. That
 is a correctness problem, not a throughput one, and it silently corrupts any
 length-derived metric.
 
@@ -15,7 +15,7 @@ Two further details this loop gets right:
 * **Left padding with explicit `position_ids`.** With left-padded prompts the
   model would otherwise infer positions from cache length and place padded rows
   at the wrong RoPE offsets. Positions are derived from the attention mask so
-  every real token sits where it would in a batch of one — which is what makes
+  every real token sits where it would in a batch of one - which is what makes
   the batched/native parity test pass.
 """
 
@@ -74,7 +74,7 @@ class Generation:
 
 def _sample(scores, cfg: GenConfig, generator=None):
     """Top-k sampling, or argmax when greedy. Matches the upstream contract:
-    top_k only — no top_p, no repetition penalty.
+    top_k only - no top_p, no repetition penalty.
 
     Returns an index into whatever axis it was given. Callers now pass the
     restricted (B, K) scores and map the result back through `allowed`, so the

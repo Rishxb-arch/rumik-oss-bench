@@ -4,7 +4,7 @@
 raising, so they survived romanization *and* folding and reached the edit
 distance as raw Indic codepoints. Measured on the indic_v2 prompts before the
 fix: 46 un-romanized characters across 5 Malayalam samples, 3-5% of every folded
-string — in one of the two languages the model is worst at, so it was corrupting
+string - in one of the two languages the model is worst at, so it was corrupting
 exactly the numbers we most needed to trust.
 
 The class of bug matters more than the five characters: a silent pass-through
@@ -49,7 +49,7 @@ def test_chillu_k_is_covered_too():
 # --- in running text ------------------------------------------------------
 
 def test_malayalam_word_with_chillu_fully_romanizes():
-    # "ഒടുവിൽ" (finally) — the chillu is word-final, where it is most common.
+    # "ഒടുവിൽ" (finally) - the chillu is word-final, where it is most common.
     out = romanize("ഒടുവിൽ")
     assert indic_left(out) == "", f"chillu survived in {out!r}"
     assert out.endswith("l")

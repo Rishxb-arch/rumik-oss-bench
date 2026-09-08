@@ -2,7 +2,7 @@
 
 A promptset file is a moving target: it gets extended, reweighted, or a typo
 gets fixed. A run record must not be. Without this, a reward number six weeks
-old is uninterpretable — you cannot tell whether it came from the 34 prompts the
+old is uninterpretable - you cannot tell whether it came from the 34 prompts the
 file holds today or the 26 it held then, and nothing in the summary would show
 the difference.
 
@@ -59,7 +59,7 @@ def write_prompts_used(
 ) -> Path:
     """Write `prompts_used.jsonl` + `promptset.meta.json` into `out_dir`.
 
-    Returns the path to the jsonl. Safe to call before generation — nothing here
+    Returns the path to the jsonl. Safe to call before generation - nothing here
     depends on results, so a crashed run still leaves a record of its inputs.
     """
     out = Path(out_dir)

@@ -1,4 +1,4 @@
-"""AI4Bharat IndicConformer judge — 600M multilingual, all 22 Indian languages.
+"""AI4Bharat IndicConformer judge - 600M multilingual, all 22 Indian languages.
 
 Measured against `whisper-large-v3` on the same generated audio, the same
 references and the same normalizer (`promptsets/indic_v1.yaml`, 13 Indic rows):

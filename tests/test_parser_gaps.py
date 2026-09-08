@@ -56,7 +56,7 @@ def _two_span_sequence():
 def test_last_span_selects_the_generation_not_the_reference():
     """THE correctness trap. In a cloning prompt the reference audio is itself
     wrapped in <audio>...</audio>, so the first-span variant decodes the
-    reference clip — audio that sounds perfectly fine and is completely wrong.
+    reference clip - audio that sounds perfectly fine and is completely wrong.
     Every real call site in the training repo uses the last-span variant."""
     ids, ref, gen = _two_span_sequence()
 
@@ -113,8 +113,8 @@ def test_a_transposed_tensor_would_have_different_values():
     """Guards against 'it has the right shape so it must be right' when Q == T."""
     ids = [AUDIO_START, tok(5, 0), tok(8, 1), tok(9, 0), tok(4, 1), AUDIO_END]
     tensor = extract_audio_codes_bqt_from_token_ids(ids, Q, CODE_MAP, AUDIO_START, AUDIO_END)
-    assert tensor.tolist() == [[[5, 9], [8, 4]]]          # (B,Q,T) — correct
-    assert tensor.tolist() != [[[5, 8], [9, 4]]]          # (B,T,Q) — the bug
+    assert tensor.tolist() == [[[5, 9], [8, 4]]]          # (B,Q,T) - correct
+    assert tensor.tolist() != [[[5, 8], [9, 4]]]          # (B,T,Q) - the bug
 
 
 def test_partial_trailing_frame_is_dropped():

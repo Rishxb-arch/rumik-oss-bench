@@ -1,6 +1,6 @@
 """Noise floor: what CER does this pipeline report on known-good human audio?
 
-This is the gate. Every downstream number is meaningless without it — a reward
+This is the gate. Every downstream number is meaningless without it - a reward
 improvement smaller than the floor is unmeasurable, and a policy optimised
 against a noisy reward will find the noise rather than the speech.
 
@@ -10,8 +10,8 @@ the measurement apparatus contributes by itself.
 
 Two passes, because they answer different questions:
 
-* **original** — the wav as recorded. Isolates ASR error plus normalizer error.
-* **roundtrip** — encoded to Mimi codes and decoded back. Adds codec loss, and is
+* **original** - the wav as recorded. Isolates ASR error plus normalizer error.
+* **roundtrip** - encoded to Mimi codes and decoded back. Adds codec loss, and is
   the more honest floor: the model emits codes, so it can never beat what the
   codec can represent.
 
@@ -61,7 +61,7 @@ class CalibrationSample:
         recordings*, and 4,961 short ids have a zero-padded twin that is a
         separate manifest row.
 
-        Padding therefore does not "fix" a short id — it silently swaps in
+        Padding therefore does not "fix" a short id - it silently swaps in
         someone else's audio. That defect put 12.5% of a calibration run at
         CER 1.0 and more than doubled the reported noise floor (0.19 vs 0.08)
         before it was caught.
@@ -160,7 +160,7 @@ def load_codec_only(bundle_path: str | Path, *, device: str = "cuda:0"):
 
 def mimi_roundtrip(codec, feature_extractor, audio: np.ndarray, rate: int,
                    *, num_quantizers: int = 8, device: str = "cuda:0") -> np.ndarray:
-    """Encode to Q8 codes and decode back — exactly what a generation can express."""
+    """Encode to Q8 codes and decode back - exactly what a generation can express."""
     import torch
 
     inputs = feature_extractor(raw_audio=audio, sampling_rate=rate, return_tensors="pt")

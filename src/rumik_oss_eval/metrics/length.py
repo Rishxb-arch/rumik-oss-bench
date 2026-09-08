@@ -10,7 +10,7 @@ generation is a function of how many *complete* frames it emitted.
 Why a duration term belongs in a CER-driven reward: the cheapest way for a TTS
 policy to reduce ASR error is to slow down and over-articulate. That is the
 classic reward hack for this objective, it is invisible to CER, and a duration
-band blocks it directly. The penalty is deliberately asymmetric — running long
+band blocks it directly. The penalty is deliberately asymmetric - running long
 (looping, trailing silence, repeated syllables) is punished harder than running
 slightly short, because it is both the more common failure and the one that
 signals a degenerate policy.
@@ -97,7 +97,7 @@ def length_penalty(
     them.
 
     A missing expectation is a data problem, not a model failure, so it scores
-    0.0 with `valid=False` — the sample should be excluded from means rather
+    0.0 with `valid=False` - the sample should be excluded from means rather
     than punished for something the model did not do.
     """
     if lo <= 0 or hi <= 0 or lo > hi:
@@ -111,7 +111,7 @@ def length_penalty(
 
     generated_seconds = float(generated_seconds or 0.0)
 
-    # Nothing decodable: worst possible, and it must never be NaN — the whole
+    # Nothing decodable: worst possible, and it must never be NaN - the whole
     # point of the reward-safety rules in cer_wer.py.
     if generated_seconds <= 0:
         return LengthScore(1.0, 0.0, 0.0, float(expected_seconds), "empty", True)

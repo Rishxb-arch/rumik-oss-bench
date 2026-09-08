@@ -3,7 +3,7 @@
 Without this the length term is **inert**: `expected_seconds` is None for every
 prompt, so `score_sample` renormalises the term away and the reward becomes pure
 CER/WER. That matters because slowing down and over-articulating is *the* CER
-reward hack, and the length band is what blocks it — so the guard is missing
+reward hack, and the length band is what blocks it - so the guard is missing
 exactly when RL would start exploiting it.
 
 The estimator is deliberately crude: characters per second, per language, fitted
@@ -12,8 +12,7 @@ and stable. The rubric only penalises deviation outside a wide dead zone
 (0.8-1.25), so what matters is that the centre is right, not that the prediction
 is tight.
 
-Median rather than mean because recording corpora carry long-tailed junk —
-clips with trailing silence, or transcripts that do not match the audio.
+Median rather than mean because recording corpora carry long-tailed junk - clips with trailing silence, or transcripts that do not match the audio.
 """
 
 from __future__ import annotations
@@ -42,7 +41,7 @@ def scoreable_length(text: str) -> int:
     """Characters that are actually spoken: markup stripped, whitespace collapsed.
 
     Counting the raw prompt would make a long `<description="...">` inflate the
-    expected duration, which is exactly backwards — the description is never
+    expected duration, which is exactly backwards - the description is never
     voiced.
     """
     spoken = strip_markup(text or "").spoken

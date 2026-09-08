@@ -55,7 +55,7 @@ class ScriptRoutedAsr(AsrBackend):
         """Transcribe, routing each clip by its reference's script.
 
         Kept separate from `transcribe` because the plain Protocol has no place
-        for the reference — a judge normally never sees it.
+        for the reference - a judge normally never sees it.
         """
         if len(clips) != len(references):
             raise ValueError("clips and references must be the same length")
@@ -73,7 +73,7 @@ class ScriptRoutedAsr(AsrBackend):
 
     def transcribe(self, clips: Sequence[Clip]) -> list[AsrResult]:
         """Protocol conformance: with no reference available, route on the
-        clip's declared language instead — Indic language codes go to the Indic
+        clip's declared language instead - Indic language codes go to the Indic
         judge. Prefer `transcribe_with_references` when references exist."""
         from .indicconformer import SUPPORTED
 

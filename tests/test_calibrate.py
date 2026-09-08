@@ -1,4 +1,4 @@
-"""Calibration harness invariants — chiefly the id -> filename mapping."""
+"""Calibration harness invariants - chiefly the id -> filename mapping."""
 
 from __future__ import annotations
 

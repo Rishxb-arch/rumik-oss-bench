@@ -2,7 +2,7 @@
 
 The span selection here is the one that matters: always the LAST `<audio>` span.
 In an ICL / voice-clone prompt the reference audio is itself wrapped in
-`<audio>...</audio>`, so taking the first span decodes the reference clip — audio
+`<audio>...</audio>`, so taking the first span decodes the reference clip - audio
 that sounds perfectly fine and has nothing to do with what the model produced.
 Every real call site in the training repo uses the last-span variant.
 """

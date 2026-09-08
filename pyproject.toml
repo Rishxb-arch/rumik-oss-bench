@@ -4,7 +4,7 @@ version = "0.1.0"
 description = "Evaluation harness and published results for multilingual Indic TTS"
 requires-python = ">=3.12"
 license = { text = "Apache-2.0" }
-readme = "README.txt"
+readme = "README.md"
 dependencies = [
     "rapidfuzz>=3.9.0",
     "indic-transliteration>=2.3.0",

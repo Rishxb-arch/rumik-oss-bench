@@ -7,7 +7,7 @@ rather than yield a plausible number from whatever partial text survived. The
 module is what decides which one applies.
 
 Free to compute: no ASR, no codec, no audio. Just the emitted ids and the
-vocabulary map, so this can gate a rollout before paying for decode + ASR — which
+vocabulary map, so this can gate a rollout before paying for decode + ASR - which
 matters when an RL step produces hundreds of generations and some fraction are
 structurally dead on arrival.
 """

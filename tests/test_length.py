@@ -82,7 +82,7 @@ def test_verdicts():
 # --- asymmetry: running long is worse than running short -------------------
 
 def test_long_is_penalised_harder_than_equally_short():
-    """2x too long must cost more than 2x too short — over-generation signals a
+    """2x too long must cost more than 2x too short - over-generation signals a
     degenerate/looping policy, and slow over-articulation is the CER reward hack
     this term exists to block."""
     too_long = length_penalty(20.0, 10.0)     # ratio 2.0

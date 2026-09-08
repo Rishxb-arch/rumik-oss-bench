@@ -21,7 +21,7 @@ signal is visible rather than silent.
 
 **What this gives up, deliberately:** numeric *accuracy* stops being scored. A
 model that says "fifty" for "fifteen" now matches. That is a real cost, accepted
-because the alternative — per-language numeral tables — is not available for 17
+because the alternative - per-language numeral tables - is not available for 17
 of the 22 target languages (`num2words` covers only en/te/kn/bn), and a metric
 that behaves differently per language is worse than one that is uniformly blind
 to a known 13% slice. If numeric accuracy becomes load-bearing (IVR amounts,

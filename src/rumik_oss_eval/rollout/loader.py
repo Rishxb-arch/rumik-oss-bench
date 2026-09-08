@@ -5,7 +5,7 @@ the Mimi codec all ship together, so nothing is fetched from the gated base repo
 at runtime.
 
 Every structural constant is read from `config.json` rather than hardcoded,
-because they differ across checkpoint lineages — 583 has vocab 277404 while the
+because they differ across checkpoint lineages - 583 has vocab 277404 while the
 Silver style-FT line has 277406, and a mismatch there produces garbage audio with
 no error anywhere.
 """

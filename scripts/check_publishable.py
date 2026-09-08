@@ -71,14 +71,14 @@ def main() -> int:
                 problems.append(f"{name:<18} {rel}:{line}  {m.group(0)[:60]!r}")
 
     if problems:
-        print(f"NOT PUBLISHABLE — {len(problems)} issue(s):\n")
+        print(f"NOT PUBLISHABLE - {len(problems)} issue(s):\n")
         for x in sorted(set(problems)):
             print("  " + x)
         print("\nFix these, or add a deliberate exception, before pushing.")
         return 1
 
     n = sum(1 for _ in walk())
-    print(f"OK — {n} files checked, nothing unpublishable found.")
+    print(f"OK - {n} files checked, nothing unpublishable found.")
     print("This checks for accidents only. Licence questions are in DATA_LICENSES.md.")
     return 0
 

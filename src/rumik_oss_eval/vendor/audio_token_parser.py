@@ -1,4 +1,4 @@
-"""VENDORED — do not edit to change behaviour.
+"""VENDORED - do not edit to change behaviour.
 
 Source: tinyaya-training-main/torchtitan/tools/audio_token_parser.py
 Copied verbatim except for the two marked adaptations below, so that the
@@ -17,8 +17,8 @@ Adaptations:
      the trap this package exists to avoid getting wrong.
 
 Two conventions this file locks in, both load-bearing:
-  * `build_audio_code_id_map` returns {token_id: (code, q)} — code first.
-  * `extract_audio_codes_bqt_from_token_ids` returns (B=1, Q, T) — quantizer
+  * `build_audio_code_id_map` returns {token_id: (code, q)} - code first.
+  * `extract_audio_codes_bqt_from_token_ids` returns (B=1, Q, T) - quantizer
     major, which is what MimiModel.decode expects. The training data path is
     (T, Q) frame-major everywhere else.
 """

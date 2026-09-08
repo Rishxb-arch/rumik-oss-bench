@@ -12,11 +12,11 @@ DATA_LICENSES.md for the full picture, including the prompt corpora.
 MODEL UNDER EVALUATION
 ================================================================================
 
-rumik-oss  —  https://huggingface.co/rumik-ai/rumik-oss-1
+rumik-oss, https://huggingface.co/rumik-ai/rumik-oss-1
     Licence: other (see the model card).
     Derived by fine-tuning CohereLabs/tiny-aya-fire.
 
-    IMPORTANT — the base model is non-commercial:
+    IMPORTANT, the base model is non-commercial:
 
     CohereLabs/tiny-aya-fire is licensed CC BY-NC 4.0
     https://huggingface.co/CohereLabs/tiny-aya-fire
@@ -26,7 +26,7 @@ rumik-oss  —  https://huggingface.co/rumik-ai/rumik-oss-1
     conditions carry to derivative works. Anyone building on rumik-oss should
     read the base model's licence and Cohere Labs' acceptable use policy
     before deploying it, and should not assume this repository's Apache-2.0
-    grant extends to the model weights. It does not — it covers this code.
+    grant extends to the model weights. It does not, it covers this code.
 
     A NOTE ON TWO SIMILAR NAMES
 
@@ -41,8 +41,8 @@ rumik-oss  —  https://huggingface.co/rumik-ai/rumik-oss-1
 AUDIO CODEC
 ================================================================================
 
-Mimi  —  https://huggingface.co/kyutai/mimi
-    Licence: CC BY 4.0  —  https://creativecommons.org/licenses/by/4.0/
+Mimi, https://huggingface.co/kyutai/mimi
+    Licence: CC BY 4.0, https://creativecommons.org/licenses/by/4.0/
     Kyutai. Used to encode and decode the 12.5 Hz, 8-codebook audio token
     stream the model produces.
 
@@ -50,12 +50,12 @@ Mimi  —  https://huggingface.co/kyutai/mimi
 ASR JUDGES
 ================================================================================
 
-IndicConformer 600M multilingual  —  ai4bharat/indic-conformer-600m-multilingual
+IndicConformer 600M multilingual, ai4bharat/indic-conformer-600m-multilingual
     Licence: MIT.  Access-gated on Hugging Face; request access to use it.
     AI4Bharat. This is the neutral referee for every published number here:
     it is the only judge in the comparison with 21/21 language coverage.
 
-Whisper large-v3  —  https://huggingface.co/openai/whisper-large-v3
+Whisper large-v3, https://huggingface.co/openai/whisper-large-v3
     Licence: MIT.  OpenAI. Used for languages outside IndicConformer's set.
 
 ================================================================================
@@ -92,7 +92,7 @@ The flattened speech-language-modelling approach this model builds on is
 described in:
 
     Llama-Mimi: Exploring the Limits of Flattened Speech Language Modeling
-    arXiv:2509.14882  —  https://arxiv.org/abs/2509.14882
+    arXiv:2509.14882, https://arxiv.org/abs/2509.14882
 
 Cited as prior art. This repository is not affiliated with its authors.
 

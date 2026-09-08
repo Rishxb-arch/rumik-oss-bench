@@ -3,7 +3,7 @@
 The existing `*_eval_prompts.yaml` in the training repo carry only `{text: str}`.
 That is not enough to score against, for two reasons:
 
-* The prompt contains markup the model must **not** voice — speaker prefix, tone
+* The prompt contains markup the model must **not** voice - speaker prefix, tone
   tag, `<description="...">`, inline events. The spoken reference is the prompt
   with all of that removed.
 * Scoring Indic audio needs a **per-prompt language** for the ASR judge.

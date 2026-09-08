@@ -203,7 +203,7 @@ def test_verify_against_detects_a_non_affine_vocab():
 
 def test_restricted_generation_support_is_17x_smaller_than_full_vocab():
     """The GRPO memory lever: sampling was constrained to this set, so the
-    logprob must be computed over it — correct AND ~17x cheaper."""
+    logprob must be computed over it - correct AND ~17x cheaper."""
     layout = AudioVocabLayout(base_id=261008, audio_end_id=277394)
     allowed = layout.allowed_generation_ids
     assert len(allowed) == 2048 * 8 + 1 == 16_385

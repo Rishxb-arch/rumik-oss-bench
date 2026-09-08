@@ -1,7 +1,7 @@
 """Whisper judge, via transformers. Default: openai/whisper-large-v3 on cuda:1.
 
 Pinned to a different device than the TTS model by default. Co-tenancy on one
-card tested clean on this hardware, so this is not a workaround — with two 96 GB
+card tested clean on this hardware, so this is not a workaround - with two 96 GB
 cards it is free isolation, and it keeps generation throughput unaffected by ASR
 load during an RL rollout.
 

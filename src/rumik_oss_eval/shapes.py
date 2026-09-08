@@ -4,7 +4,7 @@ Documentation drifts from code silently; assertions do not. Every shape claimed
 in docs/tensor_flow.md is encoded here and exercised by tests/test_shapes.py, so
 a wrong number fails a test rather than misleading someone months later.
 
-The checks are **duck-typed** — they read `.shape` and `.dtype` only. That means
+The checks are **duck-typed** - they read `.shape` and `.dtype` only. That means
 the same contract validates a numpy fixture today and a real torch batch from
 `TTSBatchCollator` tomorrow, with no changes and no import of either library.
 
@@ -54,7 +54,7 @@ def samples_from_frames(frames: int) -> int:
 
 
 def frames_from_samples(samples: int) -> int:
-    """T = ceil(N / 1920) — the encoder pads a partial trailing window."""
+    """T = ceil(N / 1920) - the encoder pads a partial trailing window."""
     return -(-int(samples) // MIMI_ENCODE_DOWNSAMPLE)
 
 
@@ -64,7 +64,7 @@ def frames_from_samples(samples: int) -> int:
 class AudioVocabLayout:
     """Closed-form mapping between token ids and (code, quantizer).
 
-    The vocab is built **code-major** — `for code: for q:` at
+    The vocab is built **code-major** - `for code: for q:` at
     torchtitan/train.py:96-98, and identically in pretokenize_emilia.py:244 and
     export_tinyaya_native_hf.py:244 (they must agree or checkpoints break):
 
@@ -113,7 +113,7 @@ class AudioVocabLayout:
     def allowed_generation_ids(self) -> list[int]:
         """The support generation is restricted to: every audio token + EOS.
 
-        Size is `C*Q + 1` = 16,385 at Q=8, C=2048 — about 17x smaller than the
+        Size is `C*Q + 1` = 16,385 at Q=8, C=2048 - about 17x smaller than the
         full 277,404 vocab. Since sampling was constrained to exactly this set,
         a GRPO logprob must be computed over it too: that is both correct and
         the single largest memory saving available.
@@ -176,7 +176,7 @@ def assert_batch(
 
     Returns the resolved dimension map, so a caller can assert e.g. that `B`
     matched what it expected. Raises AssertionError with a specific message on
-    the first violation — a shape bug should name the tensor and the axis.
+    the first violation - a shape bug should name the tensor and the axis.
     """
     resolved: dict[str, int] = dict(dims or {})
 
@@ -237,7 +237,7 @@ CODEBOOK_FRAME_BATCH = BatchSpec(
         TensorSpec("ref_input_ids", ("B", "R"), "int64", "pad_token_id"),
         TensorSpec("ref_attention_mask", ("B", "R"), "int64", 0),
         TensorSpec("ref_audio_codes", ("B", "T_r", "Q"), "int64", "codebook_size",
-                   note="FRAME-MAJOR (B,T_r,Q). The parser returns (B,Q,T) — "
+                   note="FRAME-MAJOR (B,T_r,Q). The parser returns (B,Q,T) - "
                         "transposing one into the other silently yields garbage."),
         TensorSpec("ref_audio_mask", ("B", "T_r"), "int64", 0),
     ),

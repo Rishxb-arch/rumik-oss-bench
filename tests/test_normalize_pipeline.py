@@ -199,7 +199,7 @@ def test_final_long_a_survives_regression(latin, deva):
     """Schwa deletion must not eat a real final 'ā'.
 
     Diacritics used to be stripped before the schwa rules ran, which made the
-    inherent schwa 'a' and the long vowel 'ā' indistinguishable — so "बचा"
+    inherent schwa 'a' and the long vowel 'ā' indistinguishable - so "बचा"
     became "bac" while romanized "bacha" stayed "baca". Hindi words ending in ā
     are everywhere, so this was systematic.
     """
@@ -217,7 +217,7 @@ def test_shared_danda_does_not_imply_devanagari_regression():
     """। (U+0964) sits in the Devanagari block but is shared Indic punctuation.
 
     Without excluding it, Bengali or Gurmukhi text ending in a danda reports as
-    containing Devanagari, which corrupts per-script reporting — and per-script
+    containing Devanagari, which corrupts per-script reporting - and per-script
     reporting is how we will know whether the non-Latin scripts actually work.
     """
     assert detect_scripts("আমি আজ স্টেশনে আটকে আছি।") == {"bengali"}
@@ -229,7 +229,7 @@ def test_numeral_vocabulary_is_fully_built_regression():
     """num2words must be installed, not silently skipped.
 
     Its guarded import once left the VM with an 83-entry numeral vocabulary
-    while the dev machine had 224 — two environments scoring differently with
+    while the dev machine had 224 - two environments scoring differently with
     no error raised anywhere, and a threshold tuned against the wrong one.
     """
     from rumik_oss_eval.normalize.numbers import GENERATED_AVAILABLE, _NUMBER_WORDS

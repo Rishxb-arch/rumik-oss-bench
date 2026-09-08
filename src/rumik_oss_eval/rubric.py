@@ -10,7 +10,7 @@ the number safe to optimise against:
    whatever partial text survived produces a plausible number, which is worse
    than an obvious failure because nothing downstream can tell it went wrong.
 3. **Every component is emitted per sample.** Weights can then be retuned
-   offline from a stored run, without re-running generation or ASR — which
+   offline from a stored run, without re-running generation or ASR - which
    matters enormously once RL sweeps start.
 
 The default weighting leans on CER. WER is reported but not leaned on: romanized
@@ -80,7 +80,7 @@ def score_sample(
     """Reward for one generation. Gates first, then a weighted sum of goodness.
 
     A term whose input is unavailable (no expected duration, say) is **dropped
-    and the remaining weights renormalised** — not scored zero, which would be a
+    and the remaining weights renormalised** - not scored zero, which would be a
     free penalty, and not scored one, which would be free credit.
     """
     weights = weights or RubricWeights()

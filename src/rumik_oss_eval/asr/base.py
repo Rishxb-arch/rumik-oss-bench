@@ -1,6 +1,6 @@
 """The ASR judge interface.
 
-Whatever sits behind this Protocol *becomes the objective* once RL starts — the
+Whatever sits behind this Protocol *becomes the objective* once RL starts - the
 policy will move toward whatever the judge rewards. So the interface is designed
 to make judge swaps cheap and judge failures visible, rather than to hide them.
 
@@ -11,7 +11,7 @@ version (`ayatts_runtime/deepspeed_runner.py:6384`), which violated all of them:
    the per-sample function, reloading the checkpoint on every clip.
 2. **Respect the sample rate.** Upstream accepts `sample_rate` and ignores it.
    Mimi decodes at 24 kHz and Whisper assumes 16 kHz, so audio was fed ~1.5x too
-   fast — which inflates WER on its own, independent of the model.
+   fast - which inflates WER on its own, independent of the model.
 
 And one rule of our own: a transcript we do not trust must be reported as such.
 An ASR that hallucinates on silence produces a *plausible* string, and a
@@ -95,7 +95,7 @@ def is_silent(audio: np.ndarray, *, rms_threshold: float = 1e-4) -> bool:
 
 
 def is_degenerate(text: str, *, min_words: int = 6, repeat_ratio: float = 0.5) -> bool:
-    """Looping output — the same token repeated over and over.
+    """Looping output - the same token repeated over and over.
 
     Whisper's characteristic hallucination is a short phrase repeated to fill
     the window. A transcript where one word is more than half of all words is
