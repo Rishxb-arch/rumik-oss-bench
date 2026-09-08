@@ -9,42 +9,12 @@
 **[Methodology](METHODOLOGY.md)** ·
 **[Data licences](DATA_LICENSES.md)**
 
-How we measure text-to-speech quality for 21 Indian languages, and how our model
-compares to six commercial TTS APIs.
+How we measure text-to-speech quality for 21 Indian languages, and how to
+reproduce those measurements for any TTS system including ours.
 
 This repo has the prompts, the scoring code, the method, and our per-sample
 numbers. It does not have audio: we cannot republish audio the vendor APIs
 generated for us, and our own is large and regenerable from the prompts.
-
-## What we found
-
-Character error rate (CER), lower is better, judged by IndicConformer, averaged
-over the 15 languages where at least one API competes:
-
-| system | mean CER |
-|---|---|
-| best API per language | 0.0177 (the best of six, chosen per language) |
-| **rumik-oss (ours)** | **0.0217** |
-
-Per language, against the best API available in that language:
-
-| verdict | languages |
-|---|---|
-| ahead | 0 |
-| within noise | 12 |
-| behind | 3 (Bengali, Punjabi, Urdu) |
-
-We cover 21 of 21 benchmark languages. ElevenLabs covers 13, Gemini 15, Sarvam
-10, Smallest 10, Cartesia 9, Grok 1. On the six languages no API supports
-(Bodo, Dogri, Kashmiri, Manipuri, Sanskrit, Santali) there is nothing to
-compare against.
-
-Against Sarvam alone, on the 10 languages it supports, same 999 prompts each:
-we win 550, lose 391, tie 58. The difference is in the tail. At the 90th
-percentile we are 0.0311 and Sarvam is 0.1019.
-
-Charts: [`docs/vendor_bars.html`](docs/vendor_bars.html) and
-[`docs/sarvam_hist.html`](docs/sarvam_hist.html)
 
 ## Two things to know before quoting any of this
 
@@ -242,11 +212,11 @@ Evaluated here: **rumik-oss**, loaded from
 checkpoint is the only model evaluated in this repo, and every number above
 comes from it.
 
-Worth stating plainly: on the 15 languages where an API competes, we are within
-measurement noise of the best available API in 12 of them and behind in 3. The
-gains over our own earlier checkpoints are small, and several of the
-per-language margins are inside the noise band described above. Read the numbers
-as "competitive on this benchmark", not as a lead.
+Per-sample scores for this checkpoint are in
+`results/rumik_oss.per_sample.tsv`, and the vendor measurements they are
+compared against are in `results/vendor_analysis.json`. Aggregate them yourself
+with `scripts/aggregate.py`; the noise band described above applies to every
+per-language margin you will get out of it.
 
 More detail in the [tech blog](https://rumik.ai/research/rumik-oss).
 
