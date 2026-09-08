@@ -1,0 +1,54 @@
+{
+  "promptset": "indic_v1",
+  "n": 15,
+  "n_scored": 15,
+  "n_gated": 0,
+  "reward_mean": 0.9464,
+  "cer_mean": 0.0417,
+  "wer_mean": 0.1149,
+  "seconds_mean": 4.1227,
+  "gates": {},
+  "by_script": {
+    "bengali": {
+      "n": 1,
+      "cer_mean": 0.0
+    },
+    "devanagari": {
+      "n": 5,
+      "cer_mean": 0.0042
+    },
+    "gujarati": {
+      "n": 1,
+      "cer_mean": 0.0
+    },
+    "gurmukhi": {
+      "n": 1,
+      "cer_mean": 0.1481
+    },
+    "kannada": {
+      "n": 1,
+      "cer_mean": 0.0645
+    },
+    "latin_only": {
+      "n": 4,
+      "cer_mean": 0.0982
+    },
+    "tamil": {
+      "n": 1,
+      "cer_mean": 0.0
+    },
+    "telugu": {
+      "n": 1,
+      "cer_mean": 0.0
+    }
+  },
+  "weights": {
+    "cer": 0.7,
+    "wer": 0.2,
+    "length": 0.1
+  },
+  "judge": "routed(indicconformer:rnnt|whisper:whisper-large-v3)",
+  "length_prior": "configs/length_prior.json",
+  "generation_seconds": 22.0,
+  "xid_delta": 0
+}

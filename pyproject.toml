@@ -1,0 +1,53 @@
+[project]
+name = "rumik-oss-tts-eval"
+version = "0.1.0"
+description = "Evaluation harness and published results for multilingual Indic TTS"
+requires-python = ">=3.12"
+license = { text = "Apache-2.0" }
+readme = "README.txt"
+dependencies = [
+    "rapidfuzz>=3.9.0",
+    "indic-transliteration>=2.3.0",
+    "numpy>=1.26.0",
+    # Grapheme-cluster segmentation for gCER. stdlib re cannot do \X, and gCER
+    # is the metric to trust on Indic scripts, so this is a correctness
+    # dependency, not a convenience one.
+    "regex>=2024.0.0",
+    # Numeral expansion. Without it the numeral vocabulary silently falls back
+    # to 83 entries instead of 224, normalisation differs, and CER differs --
+    # with no error raised anywhere. test_numeral_vocabulary_is_fully_built_regression
+    # exists because that already happened once.
+    "num2words>=0.5.13",
+    # Prompt sets in promptset.py and the scripts.
+    "PyYAML>=6.0",
+]
+
+# torch, transformers and the ASR judges are NOT dependencies. The metric and
+# normalisation code -- everything needed to check our arithmetic against the
+# published per-sample scores -- is pure Python, so `pytest` runs anywhere in
+# about two seconds with no GPU and no model download. Judges are an extra.
+[project.optional-dependencies]
+judges = [
+    "requests>=2.31",   # ElevenLabs Scribe judge
+    # IndicConformer ships ONNX inference in its remote code and fails to load
+    # without this. The CPU build is deliberate: onnxruntime-gpu wants a CUDA
+    # runtime that need not match the one torch brought, and on a mismatch it
+    # logs a provider failure and falls back to CPU anyway.
+    "onnxruntime>=1.18",
+    "torch>=2.4",
+    "transformers>=4.57,<5",
+    "torchaudio>=2.4",
+    "soundfile>=0.12",
+]
+dev = ["pytest>=8.0.0"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/rumik_oss_eval"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

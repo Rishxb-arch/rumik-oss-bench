@@ -1,0 +1,230 @@
+{
+ "style_target": "professional, steady pace",
+ "judge": "indicconformer_multi",
+ "note": "exact per-vendor request configuration used for the published numbers",
+ "vendors": {
+  "hosted_ira": {
+   "label": "silk-oss-v2 (hosted)",
+   "model_id": "rumik-ai/silk-oss-v2",
+   "style_channel": "description tag inside the input text",
+   "voices": {
+    "as": "Ira",
+    "bn": "Ira",
+    "brx": "Ira",
+    "doi": "Ira",
+    "gu": "Ira",
+    "hi": "Ira",
+    "kn": "Ira",
+    "kok": "Ira",
+    "ks": "Ira",
+    "mai": "Ira",
+    "ml": "Ira",
+    "mni": "Ira",
+    "mr": "Ira",
+    "ne": "Ira",
+    "or": "Ira",
+    "pa": "Ira",
+    "sa": "Ira",
+    "sat": "Ira",
+    "sd": "Ira",
+    "ta": "Ira",
+    "te": "Ira",
+    "ur": "Ira"
+   },
+   "languages_supported": [
+    "as",
+    "bn",
+    "brx",
+    "doi",
+    "gu",
+    "hi",
+    "kn",
+    "kok",
+    "ks",
+    "mai",
+    "ml",
+    "mni",
+    "mr",
+    "ne",
+    "or",
+    "pa",
+    "sa",
+    "sat",
+    "sd",
+    "ta",
+    "te",
+    "ur"
+   ]
+  },
+  "sarvam_bulbul_v3": {
+   "label": "Sarvam Bulbul v3",
+   "model_id": "bulbul:v3",
+   "style_channel": "numeric parameters (pace, temperature)",
+   "voices": {
+    "bn": "suhani",
+    "gu": "suhani",
+    "hi": "suhani",
+    "kn": "suhani",
+    "ml": "suhani",
+    "mr": "suhani",
+    "or": "suhani",
+    "pa": "suhani",
+    "ta": "suhani",
+    "te": "suhani"
+   },
+   "languages_supported": [
+    "bn",
+    "gu",
+    "hi",
+    "kn",
+    "ml",
+    "mr",
+    "or",
+    "pa",
+    "ta",
+    "te"
+   ]
+  },
+  "elevenlabs_v3": {
+   "label": "ElevenLabs v3",
+   "model_id": "eleven_v3",
+   "style_channel": "numeric voice_settings",
+   "voices": {
+    "as": "1Z7Y8o9cvUeWq8oLKgMY",
+    "bn": "1Z7Y8o9cvUeWq8oLKgMY",
+    "gu": "1Z7Y8o9cvUeWq8oLKgMY",
+    "hi": "1Z7Y8o9cvUeWq8oLKgMY",
+    "kn": "1Z7Y8o9cvUeWq8oLKgMY",
+    "ml": "1Z7Y8o9cvUeWq8oLKgMY",
+    "mr": "1Z7Y8o9cvUeWq8oLKgMY",
+    "ne": "1Z7Y8o9cvUeWq8oLKgMY",
+    "pa": "1Z7Y8o9cvUeWq8oLKgMY",
+    "sd": "1Z7Y8o9cvUeWq8oLKgMY",
+    "ta": "1Z7Y8o9cvUeWq8oLKgMY",
+    "te": "1Z7Y8o9cvUeWq8oLKgMY",
+    "ur": "1Z7Y8o9cvUeWq8oLKgMY"
+   },
+   "languages_supported": [
+    "as",
+    "bn",
+    "gu",
+    "hi",
+    "kn",
+    "ml",
+    "mr",
+    "ne",
+    "pa",
+    "sd",
+    "ta",
+    "te",
+    "ur"
+   ]
+  },
+  "smallest_lightning_v3_1_pro": {
+   "label": "Smallest.ai Lightning v3.1 Pro",
+   "model_id": "lightning_v3.1_pro",
+   "style_channel": "numeric parameter (speed)",
+   "voices": {
+    "bn": "aarini",
+    "gu": "aarini",
+    "hi": "aarini",
+    "kn": "aarini",
+    "ml": "aarini",
+    "mr": "aarini",
+    "or": "aarini",
+    "pa": "aarini",
+    "ta": "aarini",
+    "te": "aarini"
+   },
+   "languages_supported": [
+    "bn",
+    "gu",
+    "hi",
+    "kn",
+    "ml",
+    "mr",
+    "or",
+    "pa",
+    "ta",
+    "te"
+   ]
+  },
+  "cartesia_sonic_3_5": {
+   "label": "Cartesia Sonic 3.5",
+   "model_id": "sonic-3.5",
+   "style_channel": "numeric parameters plus a categorical emotion",
+   "voices": {
+    "bn": "48b9e1de-e2fa-4914-8b32-31c437813548",
+    "gu": "4590a461-bc68-4a50-8d14-ac04f5923d22",
+    "hi": "0f14d8cb-f039-41fe-a813-a9b4bee7eed8",
+    "kn": "6baae46d-1226-45b5-a976-c7f9b797aae2",
+    "ml": "b426013c-002b-4e89-8874-8cd20b68373a",
+    "mr": "f227bc18-3704-47fe-b759-8c78a450fdfa",
+    "pa": "8bacd442-a107-4ec1-b6f1-2fcb3f6f4d56",
+    "ta": "fb7d8d97-9730-4165-bd79-36b5ce61b5f2",
+    "te": "4418bb06-8329-49a1-bb11-53bb64ca0547"
+   },
+   "languages_supported": [
+    "bn",
+    "gu",
+    "hi",
+    "kn",
+    "ml",
+    "mr",
+    "pa",
+    "ta",
+    "te"
+   ]
+  },
+  "grok_tts": {
+   "label": "xAI Grok TTS",
+   "model_id": "unversioned — the endpoint has no model field",
+   "style_channel": "numeric parameter (speed)",
+   "voices": {
+    "hi": "eve"
+   },
+   "languages_supported": [
+    "hi"
+   ]
+  },
+  "gemini_3_1_flash_tts": {
+   "label": "Gemini 3.1 Flash TTS",
+   "model_id": "gemini-3.1-flash-tts-preview",
+   "style_channel": "natural-language preamble in the prompt",
+   "voices": {
+    "bn": "Kore",
+    "gu": "Kore",
+    "hi": "Kore",
+    "kn": "Kore",
+    "kok": "Kore",
+    "mai": "Kore",
+    "ml": "Kore",
+    "mr": "Kore",
+    "ne": "Kore",
+    "or": "Kore",
+    "pa": "Kore",
+    "sd": "Kore",
+    "ta": "Kore",
+    "te": "Kore",
+    "ur": "Kore"
+   },
+   "languages_supported": [
+    "bn",
+    "gu",
+    "hi",
+    "kn",
+    "kok",
+    "mai",
+    "ml",
+    "mr",
+    "ne",
+    "or",
+    "pa",
+    "sd",
+    "ta",
+    "te",
+    "ur"
+   ]
+  }
+ }
+}

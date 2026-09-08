@@ -1,0 +1,26 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.egg-info/
+.venv/
+.DS_Store
+
+# Never publish generated audio: vendor TTS output is not redistributable and
+# our own is large and regenerable. scripts/check_publishable.py enforces this.
+*.wav
+*.mp3
+*.flac
+*.ogg
+
+# Model weights live on a model hub, not in git.
+*.safetensors
+*.bin
+*.pt
+*.ckpt
+
+# Credentials
+.env
+.env.*
+*.pem
+*.key
+service-account*.json

@@ -1,0 +1,112 @@
+<!doctype html><meta charset="utf-8">
+<title>TinyAya LoRA vs Sarvam Bulbul v3 — CER distribution</title>
+<style>
+.viz-root{color-scheme:light;
+ --surface-1:#fcfcfb;--surface-2:#f3f3f1;--line:#e3e3df;
+ --text-primary:#0b0b0b;--text-secondary:#52514e;--text-muted:#84837e;
+ --ours:#2a78d6;--api:#eb6834;}
+@media (prefers-color-scheme:dark){:root:where(:not([data-theme="light"])) .viz-root{
+ color-scheme:dark;--surface-1:#1a1a19;--surface-2:#242423;--line:#33322f;
+ --text-primary:#fff;--text-secondary:#c3c2b7;--text-muted:#8d8c84;
+ --ours:#3987e5;--api:#d95926;}}
+:root[data-theme="dark"] .viz-root{color-scheme:dark;
+ --surface-1:#1a1a19;--surface-2:#242423;--line:#33322f;
+ --text-primary:#fff;--text-secondary:#c3c2b7;--text-muted:#8d8c84;
+ --ours:#3987e5;--api:#d95926;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--surface-1);color:var(--text-primary);
+ font:14px/1.5 system-ui,-apple-system,sans-serif}
+.viz-root{max-width:960px;margin:0 auto;padding:2rem 1.2rem 4rem}
+h1{font-size:22px;margin:0 0 .2rem}
+h2{font-size:15px;margin:2.4rem 0 .3rem}
+.sub{color:var(--text-secondary);font-size:13px;margin-bottom:1.1rem}
+.legend{display:flex;gap:1.3rem;align-items:center;flex-wrap:wrap;
+ padding:.7rem .9rem;background:var(--surface-2);border-radius:8px;
+ margin-bottom:1.4rem;font-size:13px}
+.key{display:inline-flex;align-items:center;gap:.45rem}
+.sw{width:22px;height:10px;border-radius:3px}
+.sw.ours{background:var(--ours)} .sw.api{background:var(--api)}
+.dirn{margin-left:auto;color:var(--text-secondary)}
+.stats{display:flex;gap:2rem;flex-wrap:wrap;margin:.2rem 0 1.4rem}
+.stat b{display:block;font-size:24px;font-variant-numeric:tabular-nums;
+ line-height:1.15}
+.stat span{font-size:12px;color:var(--text-secondary)}
+.chart{background:var(--surface-2);border-radius:10px;padding:1.1rem 1rem .6rem;
+ display:flex;align-items:flex-end;gap:2px;height:260px}
+.hbin{flex:1;display:flex;flex-direction:column;justify-content:flex-end;
+ height:100%;position:relative}
+.hbin:focus{outline:2px solid var(--ours);outline-offset:2px;border-radius:4px}
+.cols{display:flex;gap:2px;align-items:flex-end;height:100%}
+.col{flex:1;border-radius:4px 4px 0 0;min-height:2px}
+.col.ours{background:var(--ours)} .col.api{background:var(--api)}
+.xlab{font:500 10px ui-monospace,monospace;color:var(--text-muted);
+ text-align:center;margin-top:.45rem;white-space:nowrap}
+.tip{position:absolute;bottom:100%;left:50%;transform:translateX(-50%);
+ background:var(--text-primary);color:var(--surface-1);padding:.35rem .6rem;
+ border-radius:5px;font-size:11.5px;white-space:nowrap;opacity:0;z-index:5;
+ pointer-events:none;transition:opacity .1s}
+.hbin:hover .tip,.hbin:focus .tip{opacity:1}
+.lrow{display:grid;grid-template-columns:132px 1fr 70px;gap:.6rem;
+ align-items:center;padding:.3rem 0}
+.lname{font-size:13px;text-align:right}
+.code{color:var(--text-muted);font:500 10.5px ui-monospace,monospace;margin-left:.3rem}
+.ltrack{display:flex;flex-direction:column;gap:2px}
+.lbar{height:13px;border-radius:0 4px 4px 0;min-width:34px;display:flex;
+ align-items:center;justify-content:flex-end;padding-right:5px}
+.lbar.ours{background:var(--ours)} .lbar.api{background:var(--api)}
+.lbar span{font:500 10px ui-monospace,monospace;color:#fff}
+.ldelta{font:500 12px ui-monospace,monospace;text-align:right;
+ font-variant-numeric:tabular-nums;color:var(--text-secondary)}
+.v-ahead{color:var(--ours);font-weight:600}
+.note{background:var(--surface-2);border-left:3px solid var(--api);
+ padding:.75rem 1rem;border-radius:0 8px 8px 0;margin:1.6rem 0;font-size:12.5px;
+ color:var(--text-secondary)}
+details{margin-top:1.8rem} summary{cursor:pointer;color:var(--text-secondary)}
+table{border-collapse:collapse;width:100%;margin-top:.7rem;font-size:12.5px;
+ font-variant-numeric:tabular-nums}
+th,td{padding:.32rem .5rem;border-bottom:1px solid var(--line);text-align:right}
+th:first-child,td:first-child{text-align:left}
+</style>
+<div class="viz-root">
+<h1>TinyAya LoRA vs Sarvam Bulbul v3</h1>
+<div class="sub">Per-sample character error rate · 999 prompts scored on both
+systems · 10 languages Sarvam supports · judged by IndicConformer</div>
+
+<div class="legend">
+  <span class="key"><span class="sw ours"></span> TinyAya LoRA r=64 (ours)</span>
+  <span class="key"><span class="sw api"></span> Sarvam Bulbul v3</span>
+  <span class="dirn">lower CER is better — mass to the left is better</span>
+</div>
+
+<div class="stats">
+  <div class="stat"><b>550</b><span>prompts where we win</span></div>
+  <div class="stat"><b>391</b><span>where Sarvam wins</span></div>
+  <div class="stat"><b>58</b><span>identical</span></div>
+  <div class="stat"><b>0.0114</b><span>our median CER</span></div>
+  <div class="stat"><b>0.0144</b><span>Sarvam median CER</span></div>
+</div>
+
+<h2>Distribution of per-sample CER</h2>
+<div class="sub">bar height = number of prompts in that error band</div>
+<div class="chart"><div class="hbin" tabindex="0" aria-label="CER 0.00–0.01: ours 460, Sarvam 361"><div class="cols"><div class="col ours" style="height:100.00%"></div><div class="col api"  style="height:78.48%"></div></div><div class="xlab">0.00–0.01</div><span class="tip">CER 0.00–0.01<br>TinyAya LoRA: <b>460</b> · Sarvam Bulbul v3: <b>361</b></span></div><div class="hbin" tabindex="0" aria-label="CER 0.01–0.02: ours 287, Sarvam 253"><div class="cols"><div class="col ours" style="height:62.39%"></div><div class="col api"  style="height:55.00%"></div></div><div class="xlab">0.01–0.02</div><span class="tip">CER 0.01–0.02<br>TinyAya LoRA: <b>287</b> · Sarvam Bulbul v3: <b>253</b></span></div><div class="hbin" tabindex="0" aria-label="CER 0.02–0.03: ours 141, Sarvam 115"><div class="cols"><div class="col ours" style="height:30.65%"></div><div class="col api"  style="height:25.00%"></div></div><div class="xlab">0.02–0.03</div><span class="tip">CER 0.02–0.03<br>TinyAya LoRA: <b>141</b> · Sarvam Bulbul v3: <b>115</b></span></div><div class="hbin" tabindex="0" aria-label="CER 0.03–0.04: ours 54, Sarvam 59"><div class="cols"><div class="col ours" style="height:11.74%"></div><div class="col api"  style="height:12.83%"></div></div><div class="xlab">0.03–0.04</div><span class="tip">CER 0.03–0.04<br>TinyAya LoRA: <b>54</b> · Sarvam Bulbul v3: <b>59</b></span></div><div class="hbin" tabindex="0" aria-label="CER 0.04–0.05: ours 24, Sarvam 27"><div class="cols"><div class="col ours" style="height:5.22%"></div><div class="col api"  style="height:5.87%"></div></div><div class="xlab">0.04–0.05</div><span class="tip">CER 0.04–0.05<br>TinyAya LoRA: <b>24</b> · Sarvam Bulbul v3: <b>27</b></span></div><div class="hbin" tabindex="0" aria-label="CER 0.05–0.06: ours 8, Sarvam 23"><div class="cols"><div class="col ours" style="height:1.74%"></div><div class="col api"  style="height:5.00%"></div></div><div class="xlab">0.05–0.06</div><span class="tip">CER 0.05–0.06<br>TinyAya LoRA: <b>8</b> · Sarvam Bulbul v3: <b>23</b></span></div><div class="hbin" tabindex="0" aria-label="CER 0.06–0.07: ours 4, Sarvam 19"><div class="cols"><div class="col ours" style="height:0.87%"></div><div class="col api"  style="height:4.13%"></div></div><div class="xlab">0.06–0.07</div><span class="tip">CER 0.06–0.07<br>TinyAya LoRA: <b>4</b> · Sarvam Bulbul v3: <b>19</b></span></div><div class="hbin" tabindex="0" aria-label="CER 0.07–0.08: ours 2, Sarvam 11"><div class="cols"><div class="col ours" style="height:0.43%"></div><div class="col api"  style="height:2.39%"></div></div><div class="xlab">0.07–0.08</div><span class="tip">CER 0.07–0.08<br>TinyAya LoRA: <b>2</b> · Sarvam Bulbul v3: <b>11</b></span></div><div class="hbin" tabindex="0" aria-label="CER 0.08–0.09: ours 1, Sarvam 12"><div class="cols"><div class="col ours" style="height:0.22%"></div><div class="col api"  style="height:2.61%"></div></div><div class="xlab">0.08–0.09</div><span class="tip">CER 0.08–0.09<br>TinyAya LoRA: <b>1</b> · Sarvam Bulbul v3: <b>12</b></span></div><div class="hbin" tabindex="0" aria-label="CER 0.09–0.10: ours 1, Sarvam 13"><div class="cols"><div class="col ours" style="height:0.22%"></div><div class="col api"  style="height:2.83%"></div></div><div class="xlab">0.09–0.10</div><span class="tip">CER 0.09–0.10<br>TinyAya LoRA: <b>1</b> · Sarvam Bulbul v3: <b>13</b></span></div><div class="hbin" tabindex="0" aria-label="CER > 0.10: ours 17, Sarvam 106"><div class="cols"><div class="col ours" style="height:3.70%"></div><div class="col api"  style="height:23.04%"></div></div><div class="xlab">> 0.10</div><span class="tip">CER > 0.10<br>TinyAya LoRA: <b>17</b> · Sarvam Bulbul v3: <b>106</b></span></div></div>
+
+<div class="note"><b>Read the tail, not just the peak.</b> Our 90th percentile is
+0.0311 against Sarvam's 0.1019, and our 99th is 0.1646
+against 0.2796. A mean hides that: two systems with the same average can
+fail very differently, which is why this is a distribution rather than two bars.
+The final bucket is an <b>overflow</b> (every prompt above 0.10), not a
+0.01-wide bin like the others.</div>
+
+<h2>Mean CER by language</h2>
+<div class="sub">sorted by our margin · Δ = ours − Sarvam · negative means we are ahead</div>
+<div class="lrow"><div class="lname">Punjabi<span class="code">pa</span></div><div class="ltrack"><div class="lbar ours" style="width:29.30%" title="TinyAya LoRA 0.0213"><span>0.0213</span></div><div class="lbar api" style="width:94.34%" title="Sarvam Bulbul v3 0.0686"><span>0.0686</span></div></div><div class="ldelta v-ahead">-0.0473</div></div><div class="lrow"><div class="lname">Gujarati<span class="code">gu</span></div><div class="ltrack"><div class="lbar ours" style="width:14.61%" title="TinyAya LoRA 0.0106"><span>0.0106</span></div><div class="lbar api" style="width:72.42%" title="Sarvam Bulbul v3 0.0527"><span>0.0527</span></div></div><div class="ldelta v-ahead">-0.0420</div></div><div class="lrow"><div class="lname">Odia<span class="code">or</span></div><div class="ltrack"><div class="lbar ours" style="width:19.88%" title="TinyAya LoRA 0.0145"><span>0.0145</span></div><div class="lbar api" style="width:68.55%" title="Sarvam Bulbul v3 0.0499"><span>0.0499</span></div></div><div class="ldelta v-ahead">-0.0354</div></div><div class="lrow"><div class="lname">Marathi<span class="code">mr</span></div><div class="ltrack"><div class="lbar ours" style="width:11.79%" title="TinyAya LoRA 0.0086"><span>0.0086</span></div><div class="lbar api" style="width:47.99%" title="Sarvam Bulbul v3 0.0349"><span>0.0349</span></div></div><div class="ldelta v-ahead">-0.0263</div></div><div class="lrow"><div class="lname">Hindi<span class="code">hi</span></div><div class="ltrack"><div class="lbar ours" style="width:21.20%" title="TinyAya LoRA 0.0154"><span>0.0154</span></div><div class="lbar api" style="width:55.41%" title="Sarvam Bulbul v3 0.0403"><span>0.0403</span></div></div><div class="ldelta v-ahead">-0.0249</div></div><div class="lrow"><div class="lname">Kannada<span class="code">kn</span></div><div class="ltrack"><div class="lbar ours" style="width:14.42%" title="TinyAya LoRA 0.0105"><span>0.0105</span></div><div class="lbar api" style="width:43.33%" title="Sarvam Bulbul v3 0.0315"><span>0.0315</span></div></div><div class="ldelta v-ahead">-0.0210</div></div><div class="lrow"><div class="lname">Bengali<span class="code">bn</span></div><div class="ltrack"><div class="lbar ours" style="width:41.55%" title="TinyAya LoRA 0.0302"><span>0.0302</span></div><div class="lbar api" style="width:49.62%" title="Sarvam Bulbul v3 0.0361"><span>0.0361</span></div></div><div class="ldelta v-close">-0.0059</div></div><div class="lrow"><div class="lname">Telugu<span class="code">te</span></div><div class="ltrack"><div class="lbar ours" style="width:17.45%" title="TinyAya LoRA 0.0127"><span>0.0127</span></div><div class="lbar api" style="width:20.96%" title="Sarvam Bulbul v3 0.0152"><span>0.0152</span></div></div><div class="ldelta v-close">-0.0026</div></div><div class="lrow"><div class="lname">Malayalam<span class="code">ml</span></div><div class="ltrack"><div class="lbar ours" style="width:30.86%" title="TinyAya LoRA 0.0224"><span>0.0224</span></div><div class="lbar api" style="width:23.02%" title="Sarvam Bulbul v3 0.0167"><span>0.0167</span></div></div><div class="ldelta v-close">+0.0057</div></div><div class="lrow"><div class="lname">Tamil<span class="code">ta</span></div><div class="ltrack"><div class="lbar ours" style="width:30.67%" title="TinyAya LoRA 0.0223"><span>0.0223</span></div><div class="lbar api" style="width:22.58%" title="Sarvam Bulbul v3 0.0164"><span>0.0164</span></div></div><div class="ldelta v-close">+0.0059</div></div>
+
+<div class="note">Two runs of the same checkpoint differ by about 0.006 CER
+per language, so smaller gaps are noise. On that basis we are ahead in
+<b>6</b> of 10 languages and behind in <b>0</b>.
+Sarvam supports 10 of the 21 benchmark languages; our model covers all 21.</div>
+
+<details><summary>Table view (same numbers)</summary>
+<table><tr><th>Language</th><th>n</th><th>TinyAya LoRA</th><th>Sarvam Bulbul v3</th><th>Δ</th></tr>
+<tr><td>Punjabi</td><td>100</td><td>0.0213</td><td>0.0686</td><td>-0.0473</td></tr><tr><td>Gujarati</td><td>100</td><td>0.0106</td><td>0.0527</td><td>-0.0420</td></tr><tr><td>Odia</td><td>100</td><td>0.0145</td><td>0.0499</td><td>-0.0354</td></tr><tr><td>Marathi</td><td>100</td><td>0.0086</td><td>0.0349</td><td>-0.0263</td></tr><tr><td>Hindi</td><td>100</td><td>0.0154</td><td>0.0403</td><td>-0.0249</td></tr><tr><td>Kannada</td><td>100</td><td>0.0105</td><td>0.0315</td><td>-0.0210</td></tr><tr><td>Bengali</td><td>100</td><td>0.0302</td><td>0.0361</td><td>-0.0059</td></tr><tr><td>Telugu</td><td>99</td><td>0.0127</td><td>0.0152</td><td>-0.0026</td></tr><tr><td>Malayalam</td><td>100</td><td>0.0224</td><td>0.0167</td><td>+0.0057</td></tr><tr><td>Tamil</td><td>100</td><td>0.0223</td><td>0.0164</td><td>+0.0059</td></tr></table></details>
+</div>
